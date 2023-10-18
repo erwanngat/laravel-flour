@@ -1,0 +1,13 @@
+body{
+    background-color: pink;
+}
+
+
+table{
+    border-collapse: collapse;
+}
+
+td, th{
+    padding: 3px;
+    border: 1px solid black;
+}
