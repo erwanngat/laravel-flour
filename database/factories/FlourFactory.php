@@ -17,7 +17,7 @@ class FlourFactory extends Factory
     public function definition(): array
     {
         $type = ["Eating", "Consumption", "Other"];
-        $name = ["Wheat", "Rice", "Almond", "rye", "barley", "corn", "coconut"];
+        $name = ["Wheat", "Rice", "Almond", "Rye", "Barley", "Corn", "Coconut"];
         return [
             "name" => fake()->randomElement($name),
             "price" => fake()->randomFloat(2, 0, 50),
