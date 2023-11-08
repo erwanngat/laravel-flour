@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Flour;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,20 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-$DATA = [
-    ['id' =>0, 'name' => 'wheat', 'price' => 10],
-    ['id' =>1, 'name' => 'whole wheat', 'price' => 12],
-    ['id' =>2, 'name' => 'almond', 'price' => 16],
-];
-
-
 Route::get('/flours', function () {  //afficher tout (index)
-    $flours = [
-        ['id' =>0, 'name' => 'wheat flour', 'price' => 10],
-        ['id' =>1, 'name' => 'whole wheat flour', 'price' => 12],
-        ['id' =>2, 'name' => 'almond flour', 'price' => 16],
-    ];
-
+    $flours = Flour::all();
     return view('flours.index', compact('flours'));
 });
 
@@ -36,8 +25,14 @@ Route::get('/flours/create', function () {  //formulaire create
 });
 
 Route::post('/flours', function () {  //persister les infos
-    dd('Post flour');
-    // return view('store');
+    $f = new Flour();
+    $f->name = request()->name;
+    $f->price = request()->price;
+    $f->type = request()->type;
+    $f->mineral_content = request()->mineral_content;
+    $f->expiry_date = request()->expiry_date;
+    $f->save();
+    return  redirect('/flours/'.$f->id);
 });
 
 Route::get('/flours/edit', function () {  // formulaire edits
@@ -53,11 +48,10 @@ Route::delete('/flours/', function () {  //supprimer 1
 });
 
 Route::get('/flours/{id}', function ($id) {  // afficher 1 (show)
-    $flours = [
-        ['id' =>0, 'name' => 'wheat flour', 'price' => 10],
-        ['id' =>1, 'name' => 'whole wheat flour', 'price' => 12],
-        ['id' =>2, 'name' => 'almond flour', 'price' => 16],
-    ];
-    $flour = $flours[$id];
+    $flour = Flour::find($id);
     return view('flours.show', compact('flour'));
+});
+
+Route::get('/', function () {  
+    return redirect('/flours');
 });
