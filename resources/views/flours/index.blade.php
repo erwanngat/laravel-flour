@@ -27,7 +27,7 @@
                             <td class="px-4 py-2 border border-gray-800">{{ $flour->type }}</td>
                             <td class="px-4 py-2 border border-gray-800">{{ $flour->mineral_content }}</td>
                             <td class="px-4 py-2 border border-gray-800">{{ $flour->expiry_date }}</td>
-                            <td class="px-4 py-2 border border-gray-800"> <a href='flours/{{ $flour->id }}'
+                            <td class="px-4 py-2 border border-gray-800"> <a href='/flours/{{ $flour->id }}'
                                     class="text-blue-500 hover:underline">more
                                     informations</a></td>
                         </tr>

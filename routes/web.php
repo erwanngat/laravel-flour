@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Flour;
+use App\Http\Controllers\FloursController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,43 +16,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/flours', function () {  //afficher tout (index)
-    $flours = Flour::all();
-    return view('flours.index', compact('flours'));
-});
+Route::get('/flours', [FloursController::class, 'index']);
+Route::get('/flours/create', [FloursController::class, 'create']);
+Route::post('/flours', [FloursController::class, 'store']);
+Route::get('/flours/{flour}/edit', [FloursController::class, 'edit']);
+Route::patch('/flours/{flour}', [FloursController::class, 'update']);
+Route::delete('/flours/{flour}', [FloursController::class, 'destroy']);
+Route::get('/flours/{flour}', [FloursController::class, 'show']  );
 
-Route::get('/flours/create', function () {  //formulaire create
-    return view('flours.create');
-});
-
-Route::post('/flours', function () {  //persister les infos
-    $f = new Flour();
-    $f->name = request()->name;
-    $f->price = request()->price;
-    $f->type = request()->type;
-    $f->mineral_content = request()->mineral_content;
-    $f->expiry_date = request()->expiry_date;
-    $f->save();
-    return  redirect('/flours/'.$f->id);
-});
-
-Route::get('/flours/edit', function () {  // formulaire edits
-    return view('edit');
-});
-
-Route::patch('/flours/', function () {  //persister les edits
-    return view('update');
-});
-
-Route::delete('/flours/', function () {  //supprimer 1
-    return view('destroy');
-});
-
-Route::get('/flours/{id}', function ($id) {  // afficher 1 (show)
-    $flour = Flour::find($id);
-    return view('flours.show', compact('flour'));
-});
-
-Route::get('/', function () {  
+Route::get('/', function () {
     return redirect('/flours');
 });
