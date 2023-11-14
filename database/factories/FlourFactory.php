@@ -18,12 +18,27 @@ class FlourFactory extends Factory
     {
         $type = ["Eating", "Consumption", "Other"];
         $name = ["Wheat", "Rice", "Almond", "Rye", "Barley", "Corn", "Coconut"];
+        $images = [
+            "Wheat" => "wheat.png",
+            "Rice" => "rice.png",
+            "Rye" => "rye.png",
+            "Barley" => "barley.png",
+            "Corn" => "corn.png",
+            "Coconut" => "coconut.png",
+            "Almond" => "almond.png",
+        ];
+
+        $randomName = fake()->randomElement($name);
+        $imageName = isset($images[$randomName]) ? $images[$randomName] : 'default.png';    
+
         return [
-            "name" => fake()->randomElement($name),
+            "name" => $randomName,
             "price" => fake()->randomFloat(2, 0, 50),
             "type" => fake()->randomElement($type),
             "mineral_content" => fake()->randomFloat(2, 0, 2),
             "expiry_date" => fake()->dateTimeBetween('now', '+10 week'),
+            "image" => $imageName,
+
         ];
     }
 }

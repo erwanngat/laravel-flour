@@ -15,6 +15,7 @@
                         <th class="px-4 py-2 border border-gray-800">Type</th>
                         <th class="px-4 py-2 border border-gray-800">Mineral Content</th>
                         <th class="px-4 py-2 border border-gray-800">Expiry Date</th>
+                        <th class="px-4 py-2 border border-gray-800">Image</th>
                         <th class="px-4 py-2 border border-gray-800">Details</th>
                     </tr>
                 </thead>
@@ -27,6 +28,7 @@
                             <td class="px-4 py-2 border border-gray-800">{{ $flour->type }}</td>
                             <td class="px-4 py-2 border border-gray-800">{{ $flour->mineral_content }}</td>
                             <td class="px-4 py-2 border border-gray-800">{{ $flour->expiry_date }}</td>
+                            <td class="px-4 py-2 border border-gray-800"><img src="/images/{{ $flour->image }}"></td>
                             <td class="px-4 py-2 border border-gray-800"> <a href='/flours/{{ $flour->id }}'
                                     class="text-blue-500 hover:underline">more
                                     informations</a></td>

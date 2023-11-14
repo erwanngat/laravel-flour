@@ -26,8 +26,12 @@ class FloursController extends Controller
             'price' => 'required|decimal:0,2|max:99999',
             'type' => 'required|max:50',
             'mineral_content' => 'required|decimal:0,2|max:100',
-            'expiry_date' => 'required|date'
+            'expiry_date' => 'required|date',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:4096'
         ]);
+
+        $imageName = request()->file('image')->getClientOriginalName();
+        request()->file('image')->move(public_path('images'), $imageName);
 
         $f = new Flour();
         $f->name = request()->name;
@@ -35,6 +39,7 @@ class FloursController extends Controller
         $f->type = request()->type;
         $f->mineral_content = request()->mineral_content;
         $f->expiry_date = request()->expiry_date;
+        $f->image = $imageName;
         $f->save();
         return  redirect('/flours/' . $f->id);
     }
@@ -56,14 +61,19 @@ class FloursController extends Controller
             'price' => 'required|decimal:0,2|max:99999',
             'type' => 'required|max:50',
             'mineral_content' => 'required|decimal:0,2|max:100',
-            'expiry_date' => 'required|date'
+            'expiry_date' => 'required|date',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:4096'
         ]);
+
+        $imageName = request()->file('image')->getClientOriginalName();
+        request()->file('image')->move(public_path('images'), $imageName);
 
         $flour->name = request()->name;
         $flour->price = request()->price;
         $flour->type = request()->type;
         $flour->mineral_content = request()->mineral_content;
         $flour->expiry_date = request()->expiry_date;
+        $flour->image = $imageName;
         $flour->save();
         return redirect('/flours/' . $flour->id);
     }

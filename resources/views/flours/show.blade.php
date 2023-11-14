@@ -11,28 +11,7 @@
             </div>
         </div>
         <div class="justify-center">
-            @if ($flour->name == 'Almond')
-                <img class="mx-auto" src="{{ asset('images/almond.png') }}" alt="Almond Flour Image">
-            @endif
-            @if ($flour->name == 'Coconut')
-                <img class="mx-auto" src="{{ asset('images/coconut.png') }}" alt="Coconut Flour Image">
-            @endif
-            @if ($flour->name == 'Barley')
-                <img class="mx-auto" src="{{ asset('images/barley.png') }}" alt="Barley Flour Image">
-            @endif
-            @if ($flour->name == 'Rye')
-                <img class="mx-auto" src="{{ asset('images/rye.png') }}" alt="Rye Flour Image">
-            @endif
-            @if ($flour->name == 'Rice')
-                <img class="mx-auto" src="{{ asset('images/rice.png') }}" alt="Rice Flour Image">
-            @endif
-            @if ($flour->name == 'Wheat')
-                <img class="mx-auto" src="{{ asset('images/wheat.png') }}" alt="Wheat Flour Image">
-            @endif
-            @if ($flour->name == 'Corn')
-                <img class="mx-auto" src="{{ asset('images/corn.png') }}" alt="Corn Flour Image">
-            @endif
-
+            <img src="/images/{{ $flour->image }}" alt="{{ $flour->name }} image" class="w-full mb-2">
         </div>
         <div class="max-w-screen-md mx-auto mt-7">
             <table class="min-w-full table-auto">

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('type');
             $table->float('mineral_content');
             $table->date('expiry_date');
+            $table->string('image');
             $table->timestamps();
         });
     }
