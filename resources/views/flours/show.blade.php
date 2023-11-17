@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="justify-center">
-            <img src="/images/{{ $flour->image }}" alt="{{ $flour->name }} image" class="w-full mb-2">
+            <img src="/images/{{ $flour->image }}" alt="{{ $flour->name }} image" class="w-1/2 mx-auto my-auto mb-2">
         </div>
         <div class="max-w-screen-md mx-auto mt-7">
             <table class="min-w-full table-auto">
@@ -23,6 +23,7 @@
                         <th class="px-4 py-2 border border-gray-800">Type</th>
                         <th class="px-4 py-2 border border-gray-800">Mineral Content</th>
                         <th class="px-4 py-2 border border-gray-800">Expiry Date</th>
+                        <th class="px-4 py-2 border border-gray-800">Owner</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,7 +33,8 @@
                         <td class="px-4 py-2 border border-gray-800">{{ $flour->price }}</td>
                         <td class="px-4 py-2 border border-gray-800">{{ $flour->type }}</td>
                         <td class="px-4 py-2 border border-gray-800">{{ $flour->mineral_content }}</td>
-                        <td class="px-4 py-2 border border-gray-800">{{ $flour->expiry_date }}</td>
+                        <td class="px-4 py-2 border border-gray-800">{{ $dateDifference }}</td>
+                        <td class="px-4 py-2 border border-gray-800">{{ $flour->owner->name }}</td>
                     </tr>
                 </tbody>
             </table>

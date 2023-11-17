@@ -19,6 +19,7 @@ return new class extends Migration
             $table->float('mineral_content');
             $table->date('expiry_date');
             $table->string('image');
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

@@ -10,4 +10,9 @@ class Flour extends Model
     use HasFactory;
 
     protected $table = 'flours';
+
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

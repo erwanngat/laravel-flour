@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Flour;
+use App\Models\User;
+use Carbon\Carbon;
 
 class FloursController extends Controller
 {
@@ -20,7 +22,6 @@ class FloursController extends Controller
 
     public function store()
     {
-        // valider les données
         request()->validate([
             'name' => 'required|min:2|max:20|regex:/^[A-Z][a-z]+$/',
             'price' => 'required|decimal:0,2|max:99999',
@@ -46,7 +47,9 @@ class FloursController extends Controller
 
     public function show(Flour $flour)
     {
-        return view('flours.show', compact('flour'));
+        $expiryDate = Carbon::parse($flour->expiry_date);
+        $dateDifference = $expiryDate->diffForHumans();
+        return view('flours.show', ['flour' => $flour, 'dateDifference' => $dateDifference]);
     }
 
     public function edit(Flour $flour)
@@ -78,7 +81,8 @@ class FloursController extends Controller
         return redirect('/flours/' . $flour->id);
     }
 
-    public function destroy(Flour $flour){
+    public function destroy(Flour $flour)
+    {
         $flour->delete();
         return redirect('/flours');
     }

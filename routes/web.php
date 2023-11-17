@@ -16,14 +16,27 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/flours', [FloursController::class, 'index']);
-Route::get('/flours/create', [FloursController::class, 'create']);
-Route::post('/flours', [FloursController::class, 'store']);
-Route::get('/flours/{flour}/edit', [FloursController::class, 'edit']);
-Route::patch('/flours/{flour}', [FloursController::class, 'update']);
-Route::delete('/flours/{flour}', [FloursController::class, 'destroy']);
-Route::get('/flours/{flour}', [FloursController::class, 'show']  );
+// Route::get('/flours', [FloursController::class, 'index']);
+// Route::get('/flours/create', [FloursController::class, 'create']);
+// Route::post('/flours', [FloursController::class, 'store']);
+// Route::get('/flours/{flour}/edit', [FloursController::class, 'edit']);
+// Route::patch('/flours/{flour}', [FloursController::class, 'update']);
+// Route::delete('/flours/{flour}', [FloursController::class, 'destroy']);
+// Route::get('/flours/{flour}', [FloursController::class, 'show']);
+
+Route::resource('/flours', FloursController::class);
+
 
 Route::get('/', function () {
-    return redirect('/flours');
+    return view('welcome');
+});
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 });

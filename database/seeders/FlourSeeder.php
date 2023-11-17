@@ -20,6 +20,7 @@ class FlourSeeder extends Seeder
         $f->mineral_content = 0.6;
         $f->expiry_date = "2023-12-05";
         if($f->name == "Wheat"){$f->image = "wheat.png";}
+        $f->user_id = 1;
         $f->save();
 
         $f = new Flour();
@@ -29,6 +30,7 @@ class FlourSeeder extends Seeder
         $f->mineral_content = 0.4;
         $f->expiry_date = "2024-12-07";
         if($f->name == "Almond"){$f->image = "almond.png";}
+        $f->user_id = 1;
 
         $f->save();
 
@@ -39,6 +41,7 @@ class FlourSeeder extends Seeder
         $f->mineral_content = 0.9;
         $f->expiry_date = "2023-11-28";
         if($f->name == "Beans"){$f->image = "beans.png";}
+        $f->user_id = 1;
         $f->save();
 
         $f = new Flour();
@@ -48,6 +51,7 @@ class FlourSeeder extends Seeder
         $f->mineral_content = 0;
         $f->expiry_date = "2025-01-01";
         if($f->name == "Hemp"){$f->image = "hemp.png";}
+        $f->user_id = 2;
         $f->save();
 
         $f = new Flour();
@@ -57,6 +61,7 @@ class FlourSeeder extends Seeder
         $f->mineral_content = 0.5;
         $f->expiry_date = "2026-06-15";
         if($f->name == "Rice"){$f->image = "rice.png";}
+        $f->user_id = 2;
         $f->save();
     }
 }
