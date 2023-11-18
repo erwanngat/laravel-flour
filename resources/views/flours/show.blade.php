@@ -34,7 +34,13 @@
                         <td class="px-4 py-2 border border-gray-800">{{ $flour->type }}</td>
                         <td class="px-4 py-2 border border-gray-800">{{ $flour->mineral_content }}</td>
                         <td class="px-4 py-2 border border-gray-800">{{ $dateDifference }}</td>
-                        <td class="px-4 py-2 border border-gray-800">{{ $flour->owner->name }}</td>
+                        <td class="px-4 py-2 border border-gray-800">
+                            @if ($flour->owner)
+                                {{ $flour->owner->name }}
+                            @else
+                                no one  
+                            @endif
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -47,7 +53,8 @@
                 <form action="/flours/{{ $flour->id }}" method="post">
                     @method('DELETE')
                     @csrf
-                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Supprimer</button>
+                    <button type="submit"
+                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Supprimer</button>
                 </form>
             </div>
         @endsection

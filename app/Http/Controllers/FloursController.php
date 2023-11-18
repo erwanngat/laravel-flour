@@ -32,7 +32,18 @@ class FloursController extends Controller
         ]);
 
         $imageName = request()->file('image')->getClientOriginalName();
+        $existingImage = Flour::where('image', $imageName)->exists();
+        if ($existingImage) {
+            $imageName = time() . '_' . $imageName;
+        }
         request()->file('image')->move(public_path('images'), $imageName);
+
+        $owner = User::where('name', request()->owner)->first();
+        if ($owner) {
+            $owner_id = $owner->id;
+        } else {
+            $owner_id = 0;
+        }
 
         $f = new Flour();
         $f->name = request()->name;
@@ -40,6 +51,7 @@ class FloursController extends Controller
         $f->type = request()->type;
         $f->mineral_content = request()->mineral_content;
         $f->expiry_date = request()->expiry_date;
+        $f->user_id = $owner_id;
         $f->image = $imageName;
         $f->save();
         return  redirect('/flours/' . $f->id);
@@ -65,18 +77,33 @@ class FloursController extends Controller
             'type' => 'required|max:50',
             'mineral_content' => 'required|decimal:0,2|max:100',
             'expiry_date' => 'required|date',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:4096'
+            'owner' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:4096'
         ]);
 
-        $imageName = request()->file('image')->getClientOriginalName();
-        request()->file('image')->move(public_path('images'), $imageName);
+        if (request()->hasFile('image')) {
+            $imageName = request()->file('image')->getClientOriginalName();
+            $existingImage = Flour::where('image', $imageName)->exists();
+            if ($existingImage) {
+                $imageName = time() . '_' . $imageName;
+            }
+            request()->file('image')->move(public_path('images'), $imageName);
+            $flour->image = $imageName;
+        }
+
+        $owner = User::where('name', request()->owner)->first();
+        if ($owner) {
+            $owner_id = $owner->id;
+        } else {
+            $owner_id = 0;
+        }
 
         $flour->name = request()->name;
         $flour->price = request()->price;
         $flour->type = request()->type;
         $flour->mineral_content = request()->mineral_content;
         $flour->expiry_date = request()->expiry_date;
-        $flour->image = $imageName;
+        $flour->user_id = $owner_id;
         $flour->save();
         return redirect('/flours/' . $flour->id);
     }

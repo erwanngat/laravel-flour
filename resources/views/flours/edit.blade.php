@@ -59,6 +59,18 @@
             </div>
 
             <div class="mb-4">
+                <label for="owner" class="block text-gray-700 font-bold">Owner Name:</label>
+                <input type="text" id="owner" name="owner" placeholder="owner"
+                    value="@if($flour->owner){{ $flour->owner->name }}
+                        @else
+no one @endif"
+                    class="w-full px-3 py-2 border rounded-md shadow-md focus:outline-none focus:ring focus:border-blue-300 @error('expiry_date') border-red-500 @enderror">
+                @error('expiry_date')
+                    <p class="text-red-500">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="mb-4">
                 <label for="image" class="block text-gray-700 font-bold">Image:</label>
                 <input type="file" id="image" name="image"
                     class="px-3 py-2 border rounded-md shadow-md focus:outline-none focus:ring focus:border-blue-300 @error('image') border-red-500 @enderror">
