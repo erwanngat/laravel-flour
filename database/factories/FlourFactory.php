@@ -38,6 +38,7 @@ class FlourFactory extends Factory
             "mineral_content" => fake()->randomFloat(2, 0, 2),
             "expiry_date" => fake()->dateTimeBetween('now', '+10 week'),
             "image" => $imageName,
+            "user_id" => fake()->numberBetween(1,2),
 
         ];
     }
