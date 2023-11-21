@@ -5,9 +5,11 @@
         <div class="justify-between p-8">
             <h1 class="text-4xl text-center inline-block">{{ $flour->name }} Flour</h1>
             <div class="inline-block ml-0">
-                <a href="/flours/{{ $flour->id }}/edit">
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</button>
-                </a>
+                @if (!auth()->user())
+                    <a href="/flours/{{ $flour->id }}/edit">
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</button>
+                    </a>
+                @endif
             </div>
         </div>
         <div class="justify-center">
@@ -38,23 +40,27 @@
                             @if ($flour->owner)
                                 {{ $flour->owner->name }}
                             @else
-                                no one  
+                                no one
                             @endif
                         </td>
                     </tr>
                 </tbody>
             </table>
             <div class="absolute top-0 right-0 mt-4 mr-4">
-                <a href="/flours/">
+                <a href=@if (auth()->user()) "/dashboard">
+                    @else
+                    "/flours/"> @endif
                     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Retour</button>
                 </a>
             </div>
             <div class="absolute top-0 left-4 mt-4 mr-4">
-                <form action="/flours/{{ $flour->id }}" method="post">
-                    @method('DELETE')
-                    @csrf
-                    <button type="submit"
-                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Supprimer</button>
-                </form>
+                @if (!auth()->user())
+                    <form action="/flours/{{ $flour->id }}" method="post">
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit"
+                            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Supprimer</button>
+                    </form>
+                @endif
             </div>
         @endsection

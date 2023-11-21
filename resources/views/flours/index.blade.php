@@ -16,6 +16,7 @@
                         <th class="px-4 py-2 border border-gray-800">Mineral Content</th>
                         <th class="px-4 py-2 border border-gray-800">Expiry Date</th>
                         <th class="px-4 py-2 border border-gray-800">Image</th>
+                        <th class="px-4 py-2 border border-gray-800">Owner</th>
                         <th class="px-4 py-2 border border-gray-800">Details</th>
                     </tr>
                 </thead>
@@ -29,6 +30,7 @@
                             <td class="px-4 py-2 border border-gray-800">{{ $flour->mineral_content }}</td>
                             <td class="px-4 py-2 border border-gray-800">{{ $flour->expiry_date }}</td>
                             <td class="px-4 py-2 border border-gray-800"><img src="/images/{{ $flour->image }}"></td>
+                            <td class="px-4 py-2 border border-gray-800">{{ $flour->owner->name }}</td>
                             <td class="px-4 py-2 border border-gray-800"> <a href='/flours/{{ $flour->id }}'
                                     class="text-blue-500 hover:underline">more
                                     informations</a></td>
@@ -37,8 +39,9 @@
                 </tbody>
             </table>
             <div class="absolute top-0 right-0 mt-4 mr-4">
-            <a href="/flours/create" class="text-right">
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add a flour</button>
-            </a>
-        @endsection
-    </div>
+                <a href="/flours/create" class="text-right">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add a
+                        flour</button>
+                </a>
+            @endsection
+        </div>

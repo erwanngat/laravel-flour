@@ -38,8 +38,16 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', [UsersController::class, 'userDisplay']);
-})->name('dashboard');
+
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
 
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
     ->name('logout');
+
+
+Route::get('/test-livewire', function(){
+    return view('counterContainer');
+});
