@@ -20,7 +20,7 @@ use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
 
 // Route::get('/flours', [FloursController::class, 'index']);
-// Route::get('/flours/create', [FloursController::class, 'create']);
+// Route::get('/flours/create', [FloursController::class, 'create'])->name('create');
 // Route::post('/flours', [FloursController::class, 'store']);
 // Route::get('/flours/{flour}/edit', [FloursController::class, 'edit']);
 // Route::patch('/flours/{flour}', [FloursController::class, 'update']);
@@ -29,10 +29,7 @@ use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
 Route::resource('/flours', FloursController::class);
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [FloursController::class, 'index'])->name('flours');
 
 Route::middleware([
     'auth:sanctum',
@@ -55,4 +52,6 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
 Route::get('/test-livewire', function(){
     return view('counterContainer');
 });
+
+
 

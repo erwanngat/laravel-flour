@@ -9,10 +9,16 @@ use Carbon\Carbon;
 
 class FloursController extends Controller
 {
+
     public function index()
     {
+        // dd(auth()->user());
         $flours = Flour::all();
-        return view('flours.index', compact('flours'));
+        if(auth()->user()){
+            return view('flours.index', compact('flours'));
+        }else{
+            return view('indexUser', compact('flours'));
+        }
     }
 
     public function create()

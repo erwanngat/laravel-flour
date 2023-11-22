@@ -1,7 +1,4 @@
 <div class="max-w-screen-md mx-auto text-center">
-    <div class="justify-between p-8">
-        <h1 class="text-4xl text-center">List of your flours</h1>
-    </div>
     <div class="max-w-screen-md mx-auto">
         <table class="min-w-full table-auto">
             <thead>

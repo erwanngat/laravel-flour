@@ -1,9 +1,14 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-4xl text-gray-800 dark:text-gray-200 leading-tight text-center">
-            {{ __('All the flours') }}
-        </h2> 
-    </x-slot>
+<x-guest-layout>
+    <div class="justify-between p-8">
+        <div class="flex justify-end items-center h-16">
+            <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
+
+            <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
+        </div>
+        <h1 class="text-4xl text-center">All the flours</h1>
+    </div>
+
+
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -47,4 +52,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-guest-layout>

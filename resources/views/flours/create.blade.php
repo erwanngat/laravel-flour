@@ -1,16 +1,11 @@
-@extends('layout')
-
-@section('main')
-    {{-- @if ($errors->any())
-    @foreach ($errors->all() as $error)
-        <p> {{ $error }}</p>
-    @endforeach
-@endif --}}
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-4xl text-gray-800 dark:text-gray-200 leading-tight text-center">
+            {{ __('Make a flour') }}
+        </h2>
+    </x-slot>
 
     <div class="max-w-screen-md mx-auto text-center">
-        <div class="justify-between p-8">
-            <h1 class="text-4xl text-center">Make a flour</h1>
-        </div>
         <form action="/flours" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-4">
@@ -60,7 +55,7 @@
                     <p class="text-red-500">{{ $message }}</p>
                 @enderror
             </div>
-            
+
             <div class="mb-4">
                 <label for="owner" class="block text-gray-700 font-bold">Owner Name:</label>
                 <input type="text" id="owner" name="owner" placeholder="owner" value="{{ old('owner') }}"
@@ -93,4 +88,5 @@
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Retour</button>
         </a>
     </div>
-@endsection
+</x-app-layout>
+
