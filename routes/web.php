@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Flour;
+use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\FloursController;
@@ -42,12 +43,16 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('/admin', function () {
+        return view('admin.admin-panel');
+    })->name('administration')->middleware('is_admin');
 });
 
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
     ->name('logout');
 
-
 Route::get('/test-livewire', function(){
     return view('counterContainer');
 });
+
