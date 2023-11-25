@@ -82,11 +82,5 @@
             </div>
         </form>
     </div>
-
-    <div class="absolute top-0 right-0 mt-4 mr-4">
-        <a href="/flours">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Retour</button>
-        </a>
-    </div>
 </x-app-layout>
 

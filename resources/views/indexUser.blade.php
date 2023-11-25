@@ -1,9 +1,12 @@
 <x-guest-layout>
     <div class="justify-between p-8">
         <div class="flex justify-end items-center h-16">
-            <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
+            <a href="{{ route('login') }}"
+                class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log
+                in</a>
 
-            <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
+            <a href="{{ route('register') }}"
+                class="ml-4 font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
         </div>
         <h1 class="text-4xl text-center">All the flours</h1>
     </div>
@@ -39,7 +42,13 @@
                                         <x-tab.td>{{ $flour->mineral_content }}</x-tab.td>
                                         <x-tab.td>{{ $flour->expiry_date }}</x-tab.td>
                                         <x-tab.td><img src="/images/{{ $flour->image }}"></x-tab.td>
-                                        <x-tab.td>{{ $flour->owner->name }}</x-tab.td>
+                                        <x-tab.td>
+                                            @if ($flour->owner)
+                                                {{ $flour->owner->name }}
+                                            @else
+                                                no one
+                                            @endif
+                                        </x-tab.td>
                                         <x-tab.td> <a href='/flours/{{ $flour->id }}'
                                                 class="text-blue-500 hover:underline">more
                                                 informations</a></x-tab.td>
