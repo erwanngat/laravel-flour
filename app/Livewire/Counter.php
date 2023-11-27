@@ -31,7 +31,7 @@ class Counter extends Component
     public function add(){
         $f = new Flour();
         $f->name = $this->name;
-        $f->price = $this->price;
+        $f->price = $this->price; 
         $f->type = 'eating';
         $f->mineral_content = '0.5';
         $f->expiry_date = '2030-01-01';
