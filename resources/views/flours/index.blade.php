@@ -2,7 +2,7 @@
     <x-slot name="header">
         <h2 class="font-semibold text-4xl text-gray-800 dark:text-gray-200 leading-tight text-center">
             {{ __('All the flours') }}
-        </h2> 
+        </h2>
     </x-slot>
 
     <div class="py-12">
@@ -34,7 +34,13 @@
                                         <x-tab.td>{{ $flour->mineral_content }}</x-tab.td>
                                         <x-tab.td>{{ $flour->expiry_date }}</x-tab.td>
                                         <x-tab.td><img src="/images/{{ $flour->image }}"></x-tab.td>
-                                        <x-tab.td>{{ $flour->owner->name }}</x-tab.td>
+                                        <x-tab.td>
+                                            @if ($flour->owner)
+                                                {{ $flour->owner->name }}
+                                            @else
+                                                no one
+                                            @endif
+                                        </x-tab.td>
                                         <x-tab.td> <a href='/flours/{{ $flour->id }}'
                                                 class="text-blue-500 hover:underline">more
                                                 informations</a></x-tab.td>
